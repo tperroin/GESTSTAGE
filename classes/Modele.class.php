@@ -7,8 +7,7 @@ define('MDP', 'root');
 abstract class Modele {
 
     private $pdo;
-    protected $nomClasseMetier = 'Enregistrement';
-    protected $clePrimaire = 'num';
+    
 
     /**
      * pdo
