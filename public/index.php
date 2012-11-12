@@ -1,14 +1,16 @@
-<form method="post" action="../controleurs/C_login.php">
-    <fieldset>
-        <label for="login">e-mail :</label>
-        <input type="text" name="login" id="login"></input><br/>
-        <label for="mdp">mot de passe :</label>
-        <input type="password" name="mdp" id="mdp"></input><br/>
-        <input type="submit" value="Valider" ></input>
-    </fieldset>
-</form>
-
 <?php
+require("../includes/fonctions.inc.php");
+//recherche du nom du controleur
+$nomControleur= getRequest("controleur", "accueil");
 
-echo "salut !"
-?>
+//recherche du nom de l'action
+$action= getRequest("action", "index");
+
+//creation de l'instance de la vue
+$vue=new Vue($nomControleur,$action);
+
+$nomClasseControleur= getNomClasse('C',$nomControleur); 
+//creation de l'instance de controleur
+$objetControleur=new $nomClasseControleur();
+$objetControleur->setVue($vue);
+$objetControleur->$action();
