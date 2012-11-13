@@ -15,8 +15,6 @@ class C_Accueil extends Controleur {
         $this->vue->pied = "../vues/templates/pied.inc.php";
 
         $this->vue->centre = "../vues/accueil/templates/centre.inc.php";
-
-        $this->vue->loginAuthentification = MaSession::get('login');
         $this->vue->afficher();
     }
 
@@ -34,7 +32,6 @@ class C_Accueil extends Controleur {
         // Centre : formulaire de connexion
         $this->vue->centre = "../vues/accueil/templates/centre.seConnecter.inc.php";
 
-        $this->vue->loginAuthentification = MaSession::get('login');
         $this->vue->afficher();
     }
 

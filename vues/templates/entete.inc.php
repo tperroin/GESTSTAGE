@@ -1,2 +1,2 @@
 <br/>
-<h1>Vente de fleurs</h1>
+<h1>Gestion des stages : GestStage</h1>
