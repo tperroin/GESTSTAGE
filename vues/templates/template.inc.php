@@ -6,19 +6,17 @@
         <title><?php echo $this->titreVue; ?></title>
     </head>
     <body>
-	<div id="conteneur">
-            <div id="header">
+            <header>
                <?php include("$this->entete"); ?>
-            </div>
-            <div id="gauche">
+            </header>
+            <nav>
                <?php include("$this->gauche"); ?>
-            </div>
-            <div id="centre">
+            </nav>
+            <section>
                 <?php include("$this->centre");?>
-            </div>
-            <div id="pied">
+            </section>
+            <footer>
                 <?php include("$this->pied");?>
-            </div>
-        </div>
+            </footer>
     </body>
 </html>

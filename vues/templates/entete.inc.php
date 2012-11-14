@@ -1,2 +1,2 @@
 <br/>
-<h1>Gestion des stages : GestStage</h1>
+<h1>GestStage</h1>

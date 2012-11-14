@@ -17,7 +17,7 @@
     echo "<li><a href=\".?controleur=utilisateur&action=coordonees\">Mes informations</a></li>";
     
     
-    echo "<li><a href=\".?controleur=administrateur&action=creerUtilisateur\">Créer un utilisateur</a></li>";
+    echo "<li><a href=\".?controleur=administrateur&action=creerUtilisateur\">Cr&eacute;er un utilisateur</a></li>";
     
     ?>
 </ul>
