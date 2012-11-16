@@ -57,7 +57,8 @@ label{
 	height: 1em;
 	margin-bottom: 10px;
 }
-input{
+input,select{
 	float: left;	
 	margin-bottom: 15px;
 }
+
