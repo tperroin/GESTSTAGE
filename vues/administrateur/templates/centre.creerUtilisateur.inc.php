@@ -3,6 +3,8 @@
 <form method="post" action=".?controleur=administrateur&action=validationcreerutilisateur">
     <fieldset>
         <legend>Ses informations g&eacute;n&eacute;rales</legend>
+        <label for="id">id</label>
+        <input type="text" readonly="readonly" name="id" id="id"></input>
         <label for="civilite">Civilit&eacute; :</label>
         <select type="select" name="civilite" id="civilite">
             <option>Monsieur</option>

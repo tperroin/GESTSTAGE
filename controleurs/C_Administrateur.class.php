@@ -33,21 +33,29 @@ class C_Administrateur extends Controleur{
     }
     
     function validationcreerutilisateur(){
-        
-        /**Problème d'insertion erreur : Warning: PDOStatement::execute() [pdostatement.execute]: SQLSTATE[HY093]: 
-         *Invalid parameter number: parameter was not defined in /var/www/sites/PPE/GESTSTAGE/classes/Modele.class.php on line 122
-         *
-         * Je pense que c'est un soucis de quantité de valeur dans le $_POST et la valeur des champs.
-         */
-        
-        
-        var_dump($_POST);
-        
-        $lesDonneesCreationUtilisateur = new M_LesDonneesCreationUtilisateur();
-        $lesDonneesCreationUtilisateur->insert($_POST);
-        
-        
-        
+        $this->vue->titreVue = "Validation cr&eacute;ation de l'utilisateur";
+        $utilisateur = new M_LesDonneesCreationUtilisateur();
+        // préparer la liste des paramètres
+        $lesParametres = array();
+        // récupérer les données du formulaire
+        $lesParametres[0] = $_POST['civilite'];
+        $lesParametres[1] = $_POST['nom'];
+        $lesParametres[2] = $_POST['prenom'];
+        $lesParametres[3] = $_POST['mail'];
+        $lesParametres[4] = $_POST['tel'];
+        $lesParametres[5] = $_POST['etudes'];
+        $lesParametres[6] = $_POST['classe'];
+        $lesParametres[7] = $_POST['option'];
+        $lesParametres[8] = $_POST['login'];
+        $lesParametres[9] = $_POST['mdp'];
+        $lesParametres[10] = $_POST['role'];
+        $ok = $utilisateur->insert($lesParametres);
+        if ($ok) {
+            $this->vue->message = "Utilisateur cr&eacute;&eacute;";
+        } else {
+            $this->vue->message = "Echec de l'ajout de l'utilisateur";
+        }
+        $this->vue->afficher();
     }
     
 }

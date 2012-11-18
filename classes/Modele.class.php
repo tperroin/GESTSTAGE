@@ -72,6 +72,23 @@ abstract class Modele {
         $this->deconnecter();
         return $retour;
     }
+    
+    
+    function getId($valeur, $nomId, $table, $nomLibelle){
+        $pdo = $this->connecter();
+        // Requête textuelle
+        $query = "SELECT " . $nomId . " FROM " . $table . " WHERE " . $nomLibelle . " = " . $valeur;
+        $queryPrepare = $pdo->prepare($query);
+        // Spécifier le type de classe à instancier
+        $queryPrepare->setFetchMode(PDO::FETCH_CLASS, $this->nomClasseMetier);
+        // Exécuter la requête avec les valeurs des paramètres
+        $retour = null;
+        if ($queryPrepare->execute(array($valeur, $nomId, $table, $nomLibelle))) {
+            $retour = $queryPrepare->fetch(PDO::FETCH_CLASS);
+        }
+        $this->deconnecter();
+        return $retour;
+    }
 
     /**
      * update
@@ -118,6 +135,7 @@ abstract class Modele {
             $query.= ",?";
         }
         $query.= " ) ";
+        echo $query;
         $queryPrepare = $pdo->prepare($query);
         $retour = $queryPrepare->execute($tabValeurs);
         $this->deconnecter();
