@@ -1,4 +1,6 @@
-<form method="post" action="../controleurs/C_login.php">
+<!-- VARIABLES NECESSAIRES -->
+<!-- $this->message : à afficher sous le formulaire -->
+<form method="post" action=".?controleur=accueil&action=authentifier">
     <fieldset>
         <label for="login">e-mail :</label>
         <input type="text" name="login" id="login"></input><br/>
@@ -7,8 +9,8 @@
         <input type="submit" value="Valider" ></input>
     </fieldset>
 </form>
-
 <?php
-
-echo "salut !"
+if (isset($this->message)) {
+    echo "<strong>".$this->message."</strong>";
+}
 ?>
