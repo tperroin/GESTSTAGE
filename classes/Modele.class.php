@@ -135,9 +135,10 @@ abstract class Modele {
             $query.= ",?";
         }
         $query.= " ) ";
-        echo $query;
+        
         $queryPrepare = $pdo->prepare($query);
         $retour = $queryPrepare->execute($tabValeurs);
+        echo $query;
         $this->deconnecter();
         return $retour;
     }
