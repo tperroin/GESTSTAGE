@@ -62,6 +62,7 @@
     </fieldset>
     <fieldset>
         <input type="submit" value="Cr&eacute;er l'utilisateur" ></input>
+        <input type="button" value="Retour" onclick="history.go(-1)">
     </fieldset>
 </form>
 <?php
