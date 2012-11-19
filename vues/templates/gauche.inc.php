@@ -11,6 +11,7 @@
         echo "<h6>".$this->loginAuthentification."</h6>";
         echo "<li><a href=\".?controleur=accueil&action=seDeconnecter\">Se d&eacute;connecter</a></li>";
         echo "<li><a href=\".?controleur=utilisateur&action=coordonees\">Mes informations</a></li>";
+        echo 'test';
     }else{
         echo "<li><a href=\".?controleur=accueil&action=seConnecter\">Se connecter</a></li>";
     }  
