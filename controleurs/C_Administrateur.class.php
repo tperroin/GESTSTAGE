@@ -38,29 +38,23 @@ class C_Administrateur extends Controleur{
         // préparer la liste des paramètres
         $lesParametres = array();
         // récupérer les données du formulaire
-        $lesParametres[0] = 1;
+        $lesParametres[0] = $utilisateur->getId('IDOPTION', 'OPTIONETUDIANT', 'LIBELLECOURTOPTION', $_POST["option"]);
         $lesParametres[1] = $_POST["login"];
         $lesParametres[2] = $_POST["mdp"];
         $lesParametres[3] = $_POST["nom"];
         $lesParametres[4] = $_POST["tel"];
         $lesParametres[5] = $_POST["mail"];
         $lesParametres[6] = $_POST["prenom"];
-        $lesParametres[7] = 'Mr';
-        $lesParametres[8] = 'aa';
-        $lesParametres[9] = 'aa';
-        $lesParametres[10] = 1;
-        
-        foreach ($lesParametres as $value) {
-            echo $value .'          ';
-        }
-        
+        $lesParametres[7] = $_POST["civilite"];
+        $lesParametres[8] = $utilisateur->getId('NUMCLASSE', 'CLASSE', 'NOMCLASSE', $_POST["classe"]);
+        $lesParametres[9] = $utilisateur->getId('NUMFILIERE', 'FILIERE', 'LIBELLEFILIERE', $_POST["etudes"]);
+        $lesParametres[10] = $utilisateur->getId('IDROLE', 'ROLE', 'LIBELLE', $_POST["role"]);    
         $ok = $utilisateur->insert($lesParametres);
         if ($ok) {
             $this->vue->message = "Utilisateur cr&eacute;&eacute;";
         } else {
             $this->vue->message = "Echec de l'ajout de l'utilisateur";
         }
-        echo $ok;
         $this->vue->afficher();
     }
     
