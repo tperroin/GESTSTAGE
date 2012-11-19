@@ -9,7 +9,7 @@
     <?php
     if (isset($this->loginAuthentification)){  
         echo "<h6>".$this->loginAuthentification."</h6>";
-        echo "<li><a href=\".?controleur=accueil&action=seDeconnecter\">Se déconnecter</a></li>";
+        echo "<li><a href=\".?controleur=accueil&action=seDeconnecter\">Se d&eacute;connecter</a></li>";
     }else{
         echo "<li><a href=\".?controleur=accueil&action=seConnecter\">Se connecter</a></li>";
     }  

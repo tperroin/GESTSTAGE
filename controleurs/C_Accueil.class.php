@@ -42,11 +42,40 @@ class C_Accueil extends Controleur {
      *  - sinon, réafficher l'écran d'authentification
      */
     function authentifier() {
-
-       /**
-        * A compléter en fonction des droits (Julien et Tanguy) Voir fonction authentifier de lafleurMVCObjet
-        */
+        $this->vue->titreVue = "GestStage : Accueil";
+        $this->vue->entete = "../vues/templates/entete.inc.php";
         
+        // préparer la liste des catégories de produits pour le menu de gauche
+        $this->vue->gauche = "../vues/templates/gauche.inc.php";
+        $this->vue->pied = "../vues/templates/pied.inc.php";
+        $this->vue->centre = "../vues/accueil/templates/centre.inc.php";
+ 
+
+        //------------------------------------------------------------------------
+        // VUE CENTRALE
+        //------------------------------------------------------------------------
+        $lesUsers = new M_Utilisateurs();
+        // Vérifier login et mot de passe saisis dans la formulaire d'authentification
+        if (isset($_POST['login']) && isset($_POST['mdp'])) {
+            $login = $_POST['login'];
+            $mdp = $_POST['mdp'];
+            if ($lesUsers->verifierLogin($login, $mdp)) {
+                // Si le login et le mot de passe sont valides, ouvrir une nouvelle session
+                MaSession::nouvelle(array('login' => $login)); // service minimum
+                $this->vue->message = "Authentification r&eacute;ussie";
+                $this->vue->centre = "../vues/accueil/templates/centre.inc.php";
+            } else {
+                $this->vue->message = "ECHEC d'identification : login ou mot de passe inconnus ";
+                $this->vue->centre = "../vues/accueil/templates/centre.seConnecter.inc.php";
+            }
+        } else {
+            $this->vue->message = "Attention : le login ou le mot de passe ne sont pas renseign&eacute;s";
+            $this->vue->centre = "../vues/accueil/templates/centre.seConnecter.inc.php";
+        }
+        //------------------------------------------------------------------------
+
+        $this->vue->loginAuthentification = MaSession::get('login');
+        $this->vue->afficher();
     }
 
     /**
