@@ -273,7 +273,7 @@ INSERT INTO `STAGE` (`NUM_STAGE`, `IDMAITRESTAGE`, `IDCONTACT`, `IDETUDIANT`, `I
 --
 
 CREATE TABLE IF NOT EXISTS `UTILISATEUR` (
-  `IDPERSONNE` varchar(10) NOT NULL,
+  `IDPERSONNE` int(3) NOT NULL AUTO_INCREMENT,
   `IDOPTIONETUDIANT` smallint(3) DEFAULT NULL,
   `LOGINUTILISATEUR` varchar(25) DEFAULT NULL,
   `MDPUTILISATEUR` varchar(25) DEFAULT NULL,
@@ -282,7 +282,6 @@ CREATE TABLE IF NOT EXISTS `UTILISATEUR` (
   `ADRESSE_MAIL` varchar(30) NOT NULL,
   `PRENOM` varchar(20) NOT NULL,
   `CIVILITE` char(32) NOT NULL,
-  `IDOPTION` smallint(3) DEFAULT NULL,
   `ETUDES` varchar(40) DEFAULT NULL,
   `FORMATION` varchar(40) DEFAULT NULL,
   `IDROLE` smallint(3) NOT NULL,
@@ -295,11 +294,11 @@ CREATE TABLE IF NOT EXISTS `UTILISATEUR` (
 -- Contenu de la table `UTILISATEUR`
 --
 
-INSERT INTO `UTILISATEUR` (`IDPERSONNE`, `IDOPTIONETUDIANT`, `LOGINUTILISATEUR`, `MDPUTILISATEUR`, `NOM`, `NUM_TEL`, `ADRESSE_MAIL`, `PRENOM`, `CIVILITE`, `IDOPTION`, `ETUDES`, `FORMATION`, `IDROLE`) VALUES
-('1', NULL, 'admin', 'admin', 'Administrateur', '0240536986', 'admin@gmail.com', 'Admin', 'Mr', NULL, NULL, NULL, 4),
-('2', NULL, 'prof', 'prof', 'Professeur', '0245454545', 'prof@gmail.com', 'Prof', 'Mr', NULL, NULL, NULL, 3),
-('3', NULL, 'secretaire', 'secretaire', 'Secretaire', '0214141414', 'secretaire@gmail.com', 'Secretaire', 'Mlle', NULL, NULL, NULL, 2),
-('4', 1, 'tperroin', 'tperroin', 'Perroin', '0279797979', 'tperroin@gmail.com', 'Thibault', 'Mr', NULL, NULL, NULL, 1);
+INSERT INTO `UTILISATEUR` (`IDPERSONNE`, `IDOPTIONETUDIANT`, `LOGINUTILISATEUR`, `MDPUTILISATEUR`, `NOM`, `NUM_TEL`, `ADRESSE_MAIL`, `PRENOM`, `CIVILITE`, `ETUDES`, `FORMATION`, `IDROLE`) VALUES
+('1', NULL, 'admin', 'admin', 'Administrateur', '0240536986', 'admin@gmail.com', 'Admin', 'Mr', NULL, NULL, 4),
+('2', NULL, 'prof', 'prof', 'Professeur', '0245454545', 'prof@gmail.com', 'Prof', 'Mr', NULL, NULL, 3),
+('3', NULL, 'secretaire', 'secretaire', 'Secretaire', '0214141414', 'secretaire@gmail.com', 'Secretaire', 'Mlle', NULL, NULL, 2),
+('4', 1, 'tperroin', 'tperroin', 'Perroin', '0279797979', 'tperroin@gmail.com', 'Thibault', 'Mr', NULL, NULL, 1);
 
 --
 -- Contraintes pour les tables exportées

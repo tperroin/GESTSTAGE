@@ -1,6 +1,6 @@
 <!-- VARIABLES NECESSAIRES -->
 <!-- $this->message : à afficher sous le formulaire -->
-<form method="post" action=".?controleur=administrateur&action=validationcreerutilisateur">
+<form method="post" action=".?controleur=administrateur&action=validationcreerutilisateur&id=<?php echo $this->id; ?>">
     <fieldset>
         <legend>Ses informations g&eacute;n&eacute;rales</legend>
         <label for="id">id</label>
