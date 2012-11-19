@@ -74,20 +74,18 @@ abstract class Modele {
     }
     
     
-    function getId($valeur, $nomId, $table, $nomLibelle){
+    function getId($id, $table, $nomLibelle, $valeur){
         $pdo = $this->connecter();
         // Requête textuelle
-        $query = "SELECT " . $nomId . " FROM " . $table . " WHERE " . $nomLibelle . " = " . $valeur;
-        $queryPrepare = $pdo->prepare($query);
-        // Spécifier le type de classe à instancier
-        $queryPrepare->setFetchMode(PDO::FETCH_CLASS, $this->nomClasseMetier);
-        // Exécuter la requête avec les valeurs des paramètres
-        $retour = null;
-        if ($queryPrepare->execute(array($valeur, $nomId, $table, $nomLibelle))) {
-            $retour = $queryPrepare->fetch(PDO::FETCH_CLASS);
-        }
+        $query = "SELECT " . $id . " FROM " . $table . " WHERE " . $nomLibelle . " = '" . $valeur. "'";
+        $resultSet = $pdo->query($query);
+        // FETCH_CLASS permet de retourner des enregistrements sous forme d'objets de la classe spécifiée
+        // ici : $this->nomClasseMetier contient "Enregistrement"
+        // La classe Enregistrement est une classe générique vide qui sera automatiquement affublée d'autant
+        // d'attributs publics qu'il y a de colonnes dans le jeu d'enregistrements
+        $retour = $resultSet->fetchAll(PDO::FETCH_COLUMN, 0);
         $this->deconnecter();
-        return $retour;
+        return $retour[0];
     }
 
     /**
@@ -138,7 +136,6 @@ abstract class Modele {
         
         $queryPrepare = $pdo->prepare($query);
         $retour = $queryPrepare->execute($tabValeurs);
-        echo $query;
         $this->deconnecter();
         return $retour;
     }
