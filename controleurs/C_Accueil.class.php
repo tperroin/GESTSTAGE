@@ -59,9 +59,10 @@ class C_Accueil extends Controleur {
         if (isset($_POST['login']) && isset($_POST['mdp'])) {
             $login = $_POST['login'];
             $mdp = $_POST['mdp'];
-            if ($lesUsers->verifierLogin($login, $mdp)) {
+            $unUser=$lesUsers->verifierLogin($login, $mdp);
+            if ($unUser) {
                 // Si le login et le mot de passe sont valides, ouvrir une nouvelle session
-                MaSession::nouvelle(array('login' => $login)); // service minimum
+                MaSession::nouvelle(array('login' => $login, 'role' => $unUser["IDROLE"])); // service minimum
                 $this->vue->message = "Authentification r&eacute;ussie";
                 $this->vue->centre = "../vues/accueil/templates/centre.inc.php";
             } else {
@@ -76,6 +77,9 @@ class C_Accueil extends Controleur {
 
         $this->vue->loginAuthentification = MaSession::get('login');
         $this->vue->afficher();
+        
+        
+//        $this->vue->roleAuthentification = get('idRole');
     }
 
     /**
