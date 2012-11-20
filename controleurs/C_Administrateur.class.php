@@ -22,6 +22,8 @@ class C_Administrateur extends Controleur{
         
         $lesRoles = new M_ListeRoles();
         $this->vue->lesRoles = $lesRoles->getAll();
+        
+        $this->vue->loginAuthentification = MaSession::get('login');
        
         $this->vue->centre = "../vues/administrateur/templates/centre.creerUtilisateur.inc.php";
         

@@ -13,6 +13,7 @@ class C_Accueil extends Controleur {
         $this->vue->gauche = "../vues/templates/gauche.inc.php";
 
         $this->vue->pied = "../vues/templates/pied.inc.php";
+        $this->vue->loginAuthentification = MaSession::get('login');
 
         $this->vue->centre = "../vues/accueil/templates/centre.inc.php";
         $this->vue->afficher();

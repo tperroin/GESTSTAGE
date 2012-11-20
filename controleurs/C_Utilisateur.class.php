@@ -20,6 +20,8 @@ class C_Utilisateur extends Controleur{
         
         $lesRoles = new M_ListeRoles();
         $this->vue->lesRoles = $lesRoles->getAll();
+        
+        $this->vue->loginAuthentification = MaSession::get('login');
        
         $this->vue->centre = "../vues/utilisateur/templates/centre.affichermesInformations.inc.php";
         
