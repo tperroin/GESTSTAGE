@@ -73,6 +73,21 @@ abstract class Modele {
         return $retour;
     }
     
+    function getFromLogin($valeurLogin) {
+        $pdo = $this->connecter();
+        // Requête textuelle
+        $query = "SELECT * FROM " . $this->table . " WHERE ADRESSE_MAIL = '" . $valeurLogin . "'";
+        $queryPrepare = $pdo->prepare($query);
+        // Spécifier le type de classe à instancier
+        $queryPrepare->setFetchMode(PDO::FETCH_CLASS, $this->nomClasseMetier);
+        // Exécuter la requête avec les valeurs des paramètres
+        $retour = null;
+        if ($queryPrepare->execute(array($valeurLogin))) {
+            $retour = $queryPrepare->fetch(PDO::FETCH_CLASS);
+        }
+        $this->deconnecter();
+        return $retour;
+    }
     
     function getId($id, $table, $nomLibelle, $valeur){
         $pdo = $this->connecter();

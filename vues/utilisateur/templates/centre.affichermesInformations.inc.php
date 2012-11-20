@@ -1,68 +1,26 @@
 <!-- VARIABLES NECESSAIRES -->
 <!-- $this->message : à afficher sous le formulaire -->
-<form method="post" action=".?controleur=utilisateur&action=coordonees">
+<form>
     <fieldset>
-        <legend>Ses informations g&eacute;n&eacute;rales</legend>
-        <label for="id">id</label>
-        <input type="text" readonly="readonly" name="id" id="id"></input>
+        <legend>Mes informations</legend>
         <label for="civilite">Civilit&eacute; :</label>
-        <select type="select" name="civilite" id="civilite">
-            <option>Monsieur</option>
-            <option>Madame</option>
-            <option>Mademoiselle</option>
-        </select>
+        <input type="text" readonly="readonly" name="civilite" id="civilite" value="<?php echo $this->lesInformations->CIVILITE; ?>"></input><br/>
         <label for="nom">Nom :</label>
-        <input type="text" name="nom" id="nom"></input><br/>
+        <input type="text" name="nom" id="nom" readonly="readonly" value="<?php echo $this->lesInformations->NOM; ?>"></input><br/>
         <label for="prenom">Pr&eacute;nom :</label>
-        <input type="prenom" name="prenom" id="mdp"></input><br/>
+        <input type="prenom" name="prenom" id="mdp" readonly="readonly" value="<?php echo $this->lesInformations->PRENOM; ?>"></input><br/>
         <label for="mail">E-Mail :</label>
-        <input type="text" name="mail" id="mail"></input><br/>
+        <input type="text" name="mail" id="mail" readonly="readonly" value="<?php echo $this->lesInformations->ADRESSE_MAIL; ?>"></input><br/>
         <label for="tel">Tel :</label>
-        <input type="text" name="tel" id="tel"></input><br/>
+        <input type="text" name="tel" id="tel" readonly="readonly" value="<?php echo $this->lesInformations->NUM_TEL; ?>"></input><br/>
         <label for="etudes">Etudes :</label>
-        <select type="select" name="etudes" id="etudes">
-        <?php
-            foreach ($this->lesFormations as $formations) { 
-                   echo'<option>'.$formations->LIBELLEFILIERE.'</option>';   
-            }
-        ?>
-        </select>
+        <input type="text" name="etudes" id="etudes" readonly="readonly" value="<?php echo $this->lesInformations->ETUDES; ?>"></input><br/>
         <label for="classe">Classe :</label>
-        <select type="select" name="classe" id="classe">
-        <?php
-            foreach ($this->lesClasses as $classes) { 
-                   echo'<option>'.$classes->NOMCLASSE.'</option>';   
-            }
-        ?>
-        </select>
+        <input type="text" name="classe" id="classe" readonly="readonly" value="<?php echo $this->lesInformations->FORMATION; ?>"></input><br/>
         <label for="option">Option :</label>
-        <select type="select" name="option" id="option">
-        <?php
-            foreach ($this->lesOptions as $option) { 
-                   echo'<option>'.$option->LIBELLECOURTOPTION.'</option>';   
-            }
-        ?>
-        </select>
+        <input type="text" name="option" id="option" readonly="readonly" value="<?php echo $this->lesInformations->IDOPTIONETUDIANT; ?>"></input><br/>
     </fieldset>
-    <fieldset>
-        <legend>Ses identifiants de connexion</legend>
-        <label for="login">Login :</label>
-        <input type="text" name="login" id="login"></input><br/>
-        <label for="mdp">Mot de passe :</label>
-        <input type="text" name="mdp" id="mdp"></input><br/>
-        <label for="role">R&ocirc;le :</label>
-        <select type="select" name="role" id="role">
-        <?php
-            foreach ($this->lesRoles as $role) { 
-                   echo'<option>'.$role->LIBELLE.'</option>';   
-            }
-        ?>
-        </select>
-        
-    </fieldset>
-    <fieldset>
-        <input type="submit" value="Cr&eacute;er l'utilisateur" ></input>
-    </fieldset>
+   
 </form>
 <?php
 if (isset($this->message)) {

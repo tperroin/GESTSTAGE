@@ -3,6 +3,7 @@
 class M_Utilisateurs extends Modele {
 	protected $table='UTILISATEUR';
         protected $clePrimaire='IDPERSONNE';
+        protected $valeurLogin= '$_SESSION["auth"]["login"]';
         
 /**
  * verifierLogin
