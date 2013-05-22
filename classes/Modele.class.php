@@ -89,6 +89,23 @@ abstract class Modele {
         return $retour;
     }
     
+    function getFromLoginValeursId($valeurLogin) {
+        $pdo = $this->connecter();
+        // Requête textuelle
+        $query = "SELECT * FROM " . $this->table . " E INNER JOIN FILIERE F ON NUMFILIERE = FORMATION INNER JOIN OPTIONETUDIANT O ON IDOPTIONETUDIANT = IDOPTION INNER JOIN ROLE R ON R.IDROLE = E.IDROLE WHERE ADRESSE_MAIL = '" . $valeurLogin . "'";
+        $queryPrepare = $pdo->prepare($query);
+        // Spécifier le type de classe à instancier
+        $queryPrepare->setFetchMode(PDO::FETCH_CLASS, $this->nomClasseMetier);
+        // Exécuter la requête avec les valeurs des paramètres
+        $retour = null;
+        if ($queryPrepare->execute(array($valeurLogin))) {
+            $retour = $queryPrepare->fetch(PDO::FETCH_CLASS);
+        }
+        $this->deconnecter();
+        
+        return $retour;
+    }
+    
     function getId($id, $table, $nomLibelle, $valeur){
         $pdo = $this->connecter();
         // Requête textuelle
@@ -125,12 +142,13 @@ abstract class Modele {
             $numParam++;
         }
         // Clause de restriction
-        $query.= " WHERE " . $this->clePrimaire . ' = ?';
+        $query.= " WHERE IDPERSONNE = ? ";
         $tabValeurs[] = $valeurClePrimaire;
         $queryPrepare = $pdo->prepare($query);
         // Exécution de la requête
         $retour = $queryPrepare->execute($tabValeurs);
         $this->deconnecter();
+                
         return $retour;
     }
 
